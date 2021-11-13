@@ -66,10 +66,10 @@ print()
 print("Making ODA data")
 tools.importing_dvs.import_DVS(180, 240).make_ODA_data('data/ODA_Dataset/dataset', 'data_tensors/ODA_dataset')
 
-#Make checkerboard tensors 
-print()
-print("Making checkerboard tensors")
-tools.importing_dvs.import_DVS(180, 240).make_checkerboard_data('data/checkerboard', 'data_tensors/checkerboard')
+# #Make checkerboard tensors. Aedat file for checkerboard data not included since it is too big for github
+# print()
+# print("Making checkerboard tensors")
+# tools.importing_dvs.import_DVS(180, 240).make_checkerboard_data('data/checkerboard', 'data_tensors/checkerboard')
 
 #Make roadmap tensors
 print()
