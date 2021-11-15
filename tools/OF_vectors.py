@@ -1,3 +1,4 @@
+from tools.plotting import plot_histogram
 import torch 
 import SNN_param as par
 from SNN_param import SNN_param
@@ -40,6 +41,7 @@ class compute_OF():
         MSConv_kernels_min = torch.amin(self.MSConv_kernels, dim = (3,4) , keepdim=True)
 
         #Normalize MSConv_kernels (for automatic parameter tuning)
+
         MSConv_kernels_norm = (self.MSConv_kernels - MSConv_kernels_min)/(MSConv_kernels_max - MSConv_kernels_min)
         
         
@@ -80,8 +82,7 @@ class compute_OF():
         tuple0 = tuple(torch.arange(self.MSConv_kernels.shape[0]))
         tuple1 = tuple(torch.arange(self.MSConv_kernels.shape[1]))
 
-        #Uncomment to use absolute rather than normalized weights 
-        test = self.MSConv_kernels[tuple0,tuple1,tau_min]
+       
 
         hist_tau_min_hor = torch.sum(self.MSConv_kernels[tuple0,tuple1,tau_min], dim = 1)
         hist_tau_min_ver = torch.sum(self.MSConv_kernels[tuple0,tuple1,tau_min], dim = 2)
@@ -122,6 +123,12 @@ class compute_OF():
      
         scale = 1/OF_lengths_max
         OF_norm = scale*OF
+
+        # #Plot map 59
+        # self.plot_histograms(59, A_hor, A_ver, hist_hor, hist_ver, theta_u, theta_v)
+
+
+        #OF_norm = OF
         
         return OF_norm, A_hor, A_ver, hist_hor, hist_ver, theta_u, theta_v, OF
 
@@ -165,9 +172,9 @@ class compute_OF():
         ax.scatter(OF[:,0], OF[:,1], marker = 'x', c ='gray')
         n = np.arange(len(OF))
 
-        # #Print map numbers next to crosses
-        # for i, txt in enumerate(n):
-        #     ax.annotate(txt, (OF[i,0], OF[i,1]), color ='white')
+        #Print map numbers next to crosses
+        for i, txt in enumerate(n):
+            ax.annotate(txt, (OF[i,0], OF[i,1]), color ='white')
         plt.show()
 
 

@@ -256,7 +256,7 @@ class TrainMSConv(torch.nn.Module):
                 # plot.plot_output_spikes_separate(z, map_colours, 0, 0, 8, 8, 'MSConv_output_spikes_seperate', (527, 685), (525,250), 1, device)
 
                 # #Plotting output spikes of MSConv layer in one window
-                # plot.plot_output_spikes_together(MSConv_buffer_sum, map_colours, 0, 1, 'MSConv_output_spikes_together', (527, 685), (525,250), 0, device)
+                # plot.plot_output_spikes_together(MSConv_buffer_sum, map_colours, 0, 0, 'MSConv_output_spikes_together', (527, 685), (525,250), 1, device)
 
                 #STDP rule
                 if training: 
@@ -272,6 +272,7 @@ class TrainMSConv(torch.nn.Module):
                 # OF_length = (OF[:, 0]**2 + OF[:, 1]**2)**0.5
                 # #Extract sorted indices
                 # OF_sorted_idx = np.argsort(OF_length)
+                # print('sorted indices', OF_sorted_idx)
                 # #Order OF magnitudes
                 # OF_length_sorted = np.round(OF_length[OF_sorted_idx], 2)
                 # #Plot weights 
